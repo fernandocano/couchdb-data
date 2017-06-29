@@ -1,0 +1,9 @@
+node_modules/
+createdb
+designdoc
+
+# autotools
+autom4te.cache/
+Makefile
+config.log
+config.status
