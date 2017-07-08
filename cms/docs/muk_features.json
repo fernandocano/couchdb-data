@@ -1,0 +1,36 @@
+{
+	"_id":"e363fa5156a34be490f8be7c4507ad3f",
+	"siteId":"muk",
+	"pageId":"features",
+	"sections":{
+		"a": "Features",
+		"b": [
+			{
+				"id": 1,
+				"title": "This Portal",
+				"content": "An ampersand single page app with pug and stylus.",
+				"badges": [
+					{"label": "success", "glyphicon": "ok", "hint": "functional"},
+					{"label": "info", "glyphicon": "wrench", "hint": "under construction"}
+				]
+			},
+			{
+				"id": 2,
+				"title": "Scheduler",
+				"content": "Some kind of scheduling thing.",
+				"badges": [
+					{"label": "danger", "glyphicon": "cloud", "hint": "vapor-ware"}
+				]
+			},
+			{
+				"id": 3,
+				"title": "Checkout",
+				"content": "A checkout flow with stripe and paypal integration.",
+				"badges": [
+					{"label": "success", "glyphicon": "ok", "hint": "functional"},
+					{"label": "info", "glyphicon": "wrench", "hint": "under construction"}
+				]
+			}
+		]
+	}
+}

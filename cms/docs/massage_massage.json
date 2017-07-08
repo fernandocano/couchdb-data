@@ -1,0 +1,39 @@
+{
+	"_id":"7935738701a7401fa16227812d62ac52",
+	"siteId":"massage",
+	"pageId":"massage",
+	"sections":{
+		"a": {
+			"a": "Reset and focus on how you would like to feel.",
+			"b": "Reconnect with your energy.  At your convenience, day...",
+			"c": "...or night.  Your goals are achievable.  Let's work together.",
+			"d": [
+				"I come to you, in the greater Austin, TX metroplex, to maximize comfort, convenience, and effectiveness.",
+				"Each session is a progression of understading and meeting your goals from injury recovery to relaxation or from a gentle foot rub to a full body massage.",
+				"We work together to plan a session that is right for you, be it time, technique, or setting."
+			]
+		},
+		"b": {
+			"a": "Style",
+			"b": "I am always honing my craft to provide a satisfying experience.  The most important part of that is listening to your goals to formulate a targeted session using techniques that can include swedis, sports massage, deep tissue, thai, deep massage, and orthopedic protocols.",
+			"c": "Secondly, working both physically and spiritually to create a space full of pease and acceptance is key."
+		},
+		"c": {
+			"a": "Logistics",
+			"b": "I provide the table, sheets, oils, cremes, music, and you have your choice of location.  I come to you!.  Don't be shy to ask for times outside of business hours.  Schedule a time that is convenient for you.",
+			"c": "Electronic payment supported via:",
+			"d": "/images/pay_dark/stripe.png 149w",
+			"e": "https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_100x26.png 100w"
+		},
+		"d": {
+			"a": "Contact",
+			"b": "If you are in the Austin, TX area, feel free to contact me to schedule and for more details."
+		},
+		"e": {
+			"a": "Email: ",
+			"b": "scheduling@winduponthewater.com",
+			"c": "Phone: ",
+			"d": "737.999.0759"
+		}
+	}
+}

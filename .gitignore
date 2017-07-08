@@ -1,6 +1,8 @@
+*.o
 node_modules/
 createdb
 designdoc
+cmsbuild
 
 # autotools
 autom4te.cache/

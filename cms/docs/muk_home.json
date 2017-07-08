@@ -1,0 +1,23 @@
+{
+	"_id":"b1ec246ef3f7402cbb23cf635ff43df2",
+	"siteId":"muk",
+	"pageId":"home",
+	"sections":{
+		"a": {
+			"a": "Consulting / Services",
+			"b": "Stumbling around in the middle of the night wondering how to get your project done?  Have you found yourself here in the midst of your fever dream?  We would be happy to listen and work with you to reach your goals.",
+			"c": "Specializing in enterprise systems, we work with your teams to scope, identify technologies, develop, and test custom solutions.  E-commerce, custom integrations, web frontend applications, apis, and analysis are all part of the services offered because any non-tirvial project requires the ability to see it in its totality."
+		},
+		"b": {
+			"a": "Technologies",
+			"b": "We support open source technologies in our skill set.", 
+			"c": [
+				"Java for enterprise systems.",
+				"Ampersand for web applications paired with rest apis.",
+				"Node for rapid server and client prototyping.",
+				"Diverse tools in a Linux platform - Python, bash, git, npm, eclipse, etc."
+			]
+		}
+	}
+}
+

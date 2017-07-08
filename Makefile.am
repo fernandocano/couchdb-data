@@ -3,10 +3,13 @@
 #
 
 cmsviews = cms/views/*.js
+cmsdocs := $(patsubst %.json,%.o,$(wildcard cms/docs/*.json))
+resource := http://slouchAdmin:shablagoo@127.0.0.1:5984
+jsonHdr := Content-Type: application/json
 
 createdb:
-	curl -X PUT http://slouchAdmin:shablagoo@127.0.1:5984/cms
-	touch createdb
+	curl -X PUT $(resource)/cms
+	touch $@
 
 designdoc: createdb $(cmsviews)
 	cp cms/design/ddoc.json designdoc;
@@ -15,13 +18,6 @@ designdoc: createdb $(cmsviews)
 			continue ; \
 		fi; \
 		filename=$$(basename $${x} .js); \
-		ismapfun=false; \
-		isreducefun=false; \
-		if [ "$${filename##*.}x" == "mapx" ] ; then \
-			ismapfun=true; \
-		elif [ "$${filename##*.}x" == "reducex" ] ; then \
-			isreducefun=true; \
-		fi; \
 		vname=$${filename%.*}; \
 		vtype=$${filename##*.}; \
 		vfun="$$(tr -d "[:cntrl:]" < $$x)"; \
@@ -29,19 +25,31 @@ designdoc: createdb $(cmsviews)
 		cp ddoc.json designdoc; \
 	done;
 	rm -f ddoc.json;
+	curl -X PUT -H "$(jsonHdr)" -d @designdoc $(resource)/cms/_design/ddoc;
+
+cms/docs/%.o: cms/docs/%.json designdoc
+	docid=$$(jq -j '._id' $<); \
+	if [ "$$(curl -s -w %{http_code} -X GET $(resource)/cms/$${docid})x" == "404x" ] ; then \
+		curl -X POST -H "$(jsonHdr)" -d @$< $(resource)/cms && touch $@; \
+	else \
+		curl -X PUT -H "$(jsonHdr)" -d @$< $(resource)/cms/$${docid} && touch $@; \
+	fi
+
+cmsbuild: $(cmsdocs)
+	touch $@
 
 clean-local:
-	curl -X DELETE http://slouchAdmin:shablagoo@127.0.0.1:5984/cms
-	rm -f designdoc createdb
+	curl -X DELETE $(resource)/cms
+	rm -f designdoc createdb cmsbuild
 
 
 if DEBUG
 CONF_ENV = dev
-all-local: designdoc
+all-local: cmsbuild
 
 else
 CONF_ENV = prod
-all-local: designdoc
+all-local: cmsbuild
 endif
 
 #.PHONY:

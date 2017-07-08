@@ -1,0 +1,12 @@
+{
+	"_id":"1b4502d6a9a5485c8317e4965fcb6926",
+	"siteId":"checkout",
+	"pageId":"checkout",
+	"sections":{
+		"a": {
+			"a": "Checkout Methods",
+			"b": "Ad-hoc Paypal",
+			"c": "Ad-hoc Stripe"
+		}
+	}
+}
