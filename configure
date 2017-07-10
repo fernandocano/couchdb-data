@@ -587,9 +587,11 @@ LIBOBJS
 DEBUG_FALSE
 DEBUG_TRUE
 SED
+COUCHDB
+CURL
 FOUND_JQ_FALSE
 FOUND_JQ_TRUE
-jq
+JQ
 AM_BACKSLASH
 AM_DEFAULT_VERBOSITY
 AM_DEFAULT_V
@@ -663,7 +665,9 @@ enable_debug
 '
       ac_precious_vars='build_alias
 host_alias
-target_alias'
+target_alias
+JQ
+CURL'
 
 
 # Initialize some variables set by options.
@@ -1281,6 +1285,13 @@ Optional Features:
   --enable-silent-rules   less verbose build output (undo: "make V=1")
   --disable-silent-rules  verbose build output (undo: "make V=0")
  --enable-debug>Development level debug
+
+Some influential environment variables:
+  JQ          A json query tool
+  CURL        A http client
+
+Use these variables to override the choices made by `configure' or to help
+it to find libraries and programs with nonstandard names/locations.
 
 Report bugs to the package provider.
 _ACEOF
@@ -2319,15 +2330,16 @@ END
   fi
 fi
 
+
 # Extract the first word of "jq", so it can be a program name with args.
 set dummy jq; ac_word=$2
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
 $as_echo_n "checking for $ac_word... " >&6; }
-if ${ac_cv_prog_jq+:} false; then :
+if ${ac_cv_prog_JQ+:} false; then :
   $as_echo_n "(cached) " >&6
 else
-  if test -n "$jq"; then
-  ac_cv_prog_jq="$jq" # Let the user override the test.
+  if test -n "$JQ"; then
+  ac_cv_prog_JQ="$JQ" # Let the user override the test.
 else
 as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
 for as_dir in $PATH
@@ -2336,7 +2348,7 @@ do
   test -z "$as_dir" && as_dir=.
     for ac_exec_ext in '' $ac_executable_extensions; do
   if as_fn_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
-    ac_cv_prog_jq="yes"
+    ac_cv_prog_JQ="jq"
     $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
     break 2
   fi
@@ -2344,20 +2356,20 @@ done
   done
 IFS=$as_save_IFS
 
-  test -z "$ac_cv_prog_jq" && ac_cv_prog_jq="no"
+  test -z "$ac_cv_prog_JQ" && ac_cv_prog_JQ="no"
 fi
 fi
-jq=$ac_cv_prog_jq
-if test -n "$jq"; then
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jq" >&5
-$as_echo "$jq" >&6; }
+JQ=$ac_cv_prog_JQ
+if test -n "$JQ"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $JQ" >&5
+$as_echo "$JQ" >&6; }
 else
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 $as_echo "no" >&6; }
 fi
 
 
- if test "x$jq" = "xyes"; then
+ if test "x$JQ" != "xno"; then
   FOUND_JQ_TRUE=
   FOUND_JQ_FALSE='#'
 else
@@ -2368,6 +2380,109 @@ fi
 if test -z "$FOUND_JQ_TRUE"; then :
   else
   as_fn_error $? "Required: jq to process json files" "$LINENO" 5
+fi
+
+
+# Extract the first word of "curl", so it can be a program name with args.
+set dummy curl; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if ${ac_cv_prog_CURL+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test -n "$CURL"; then
+  ac_cv_prog_CURL="$CURL" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_prog_CURL="curl"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  test -z "$ac_cv_prog_CURL" && ac_cv_prog_CURL="no"
+fi
+fi
+CURL=$ac_cv_prog_CURL
+if test -n "$CURL"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $CURL" >&5
+$as_echo "$CURL" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+ if test "x$CURL" != "xno"; then
+  FOUND_JQ_TRUE=
+  FOUND_JQ_FALSE='#'
+else
+  FOUND_JQ_TRUE='#'
+  FOUND_JQ_FALSE=
+fi
+
+if test -z "$FOUND_JQ_TRUE"; then :
+  else
+  as_fn_error $? "Required: curl to interact with couch-db" "$LINENO" 5
+fi
+
+# Extract the first word of "couchdb", so it can be a program name with args.
+set dummy couchdb; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if ${ac_cv_prog_COUCHDB+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test -n "$COUCHDB"; then
+  ac_cv_prog_COUCHDB="$COUCHDB" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_prog_COUCHDB="yes"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  test -z "$ac_cv_prog_COUCHDB" && ac_cv_prog_COUCHDB="no"
+fi
+fi
+COUCHDB=$ac_cv_prog_COUCHDB
+if test -n "$COUCHDB"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $COUCHDB" >&5
+$as_echo "$COUCHDB" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+ if test "x$CURL" != "xno"; then
+  FOUND_JQ_TRUE=
+  FOUND_JQ_FALSE='#'
+else
+  FOUND_JQ_TRUE='#'
+  FOUND_JQ_FALSE=
+fi
+
+if test -z "$FOUND_JQ_TRUE"; then :
+  else
+  as_fn_error $? "Required: couchdb for a database" "$LINENO" 5
 fi
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for a sed that does not truncate output" >&5
@@ -2617,6 +2732,14 @@ $as_echo_n "checking that generated files are newer than configure... " >&6; }
    { $as_echo "$as_me:${as_lineno-$LINENO}: result: done" >&5
 $as_echo "done" >&6; }
 
+if test -z "${FOUND_JQ_TRUE}" && test -z "${FOUND_JQ_FALSE}"; then
+  as_fn_error $? "conditional \"FOUND_JQ\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${FOUND_JQ_TRUE}" && test -z "${FOUND_JQ_FALSE}"; then
+  as_fn_error $? "conditional \"FOUND_JQ\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
 if test -z "${FOUND_JQ_TRUE}" && test -z "${FOUND_JQ_FALSE}"; then
   as_fn_error $? "conditional \"FOUND_JQ\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5

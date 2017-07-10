@@ -8,8 +8,7 @@ resource := http://slouchAdmin:shablagoo@127.0.0.1:5984
 jsonHdr := Content-Type: application/json
 
 createdb:
-	curl -X PUT $(resource)/cms
-	touch $@
+	$(CURL) -X PUT $(resource)/cms && touch $@
 
 designdoc: createdb $(cmsviews)
 	cp cms/design/ddoc.json designdoc;
@@ -21,25 +20,25 @@ designdoc: createdb $(cmsviews)
 		vname=$${filename%.*}; \
 		vtype=$${filename##*.}; \
 		vfun="$$(tr -d "[:cntrl:]" < $$x)"; \
-		jq ".views.$$vname.$$vtype|=\"$$vfun\"|." < designdoc > ddoc.json; \
+		$(JQ) ".views.$$vname.$$vtype|=\"$$vfun\"|." < designdoc > ddoc.json; \
 		cp ddoc.json designdoc; \
 	done;
 	rm -f ddoc.json;
-	curl -X PUT -H "$(jsonHdr)" -d @designdoc $(resource)/cms/_design/ddoc;
+	$(CURL) -X PUT -H "$(jsonHdr)" -d @designdoc $(resource)/cms/_design/ddoc;
 
 cms/docs/%.o: cms/docs/%.json designdoc
-	docid=$$(jq -j '._id' $<); \
-	if [ "$$(curl -s -w %{http_code} -X GET $(resource)/cms/$${docid})x" == "404x" ] ; then \
-		curl -X POST -H "$(jsonHdr)" -d @$< $(resource)/cms && touch $@; \
+	docid=$$($(JQ) -j '._id' $<); \
+	if [ "$$($(CURL) -s -w %{http_code} -X GET $(resource)/cms/$${docid})x" == "404x" ] ; then \
+		$(CURL) -X POST -H "$(jsonHdr)" -d @$< $(resource)/cms && touch $@; \
 	else \
-		curl -X PUT -H "$(jsonHdr)" -d @$< $(resource)/cms/$${docid} && touch $@; \
+		$(CURL) -X PUT -H "$(jsonHdr)" -d @$< $(resource)/cms/$${docid} && touch $@; \
 	fi
 
 cmsbuild: $(cmsdocs)
 	touch $@
 
 clean-local:
-	curl -X DELETE $(resource)/cms
+	$(CURL) -X DELETE $(resource)/cms
 	rm -f designdoc createdb cmsbuild
 
 
