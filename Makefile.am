@@ -31,7 +31,8 @@ cms/docs/%.o: cms/docs/%.json designdoc
 	if [ "$$($(CURL) -s -w %{http_code} -X GET $(resource)/cms/$${docid})x" == "404x" ] ; then \
 		$(CURL) -X POST -H "$(jsonHdr)" -d @$< $(resource)/cms && touch $@; \
 	else \
-		$(CURL) -X PUT -H "$(jsonHdr)" -d @$< $(resource)/cms/$${docid} && touch $@; \
+		docver=$$($(CURL) -s --head $(resource)/cms/$${docid} | grep ETag | cut -d\" -f2); \
+		$(JQ) --arg rev $${docver} '. + {_rev: $$rev}' $< |  $(CURL) -X PUT -H "$(jsonHdr)" -d @- $(resource)/cms/$${docid} && touch $@; \
 	fi
 
 cmsbuild: $(cmsdocs)
