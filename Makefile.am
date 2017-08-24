@@ -28,7 +28,7 @@ designdoc: createdb $(cmsviews)
 
 cms/docs/%.o: cms/docs/%.json designdoc
 	docid=$$($(JQ) -j '._id' $<); \
-	if [ "$$($(CURL) -s -w %{http_code} -X GET $(resource)/cms/$${docid})x" == "404x" ] ; then \
+	if [[ "$$($(CURL) -s -w %{http_code} -X GET $(resource)/cms/$${docid})" =~ "404" ]] ; then \
 		$(CURL) -X POST -H "$(jsonHdr)" -d @$< $(resource)/cms && touch $@; \
 	else \
 		docver=$$($(CURL) -s --head $(resource)/cms/$${docid} | grep ETag | cut -d\" -f2); \
