@@ -1,7 +1,7 @@
 *.o
 node_modules/
 createdb
-designdoc
+/*designdoc
 cmsbuild
 
 # autotools
