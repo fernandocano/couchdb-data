@@ -218,6 +218,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 cmsviews = cms/views/*.js
 blogviews = blog/views/*.js
+actionviews = action/views/*.js
 cmsdocs := $(patsubst %.json,%.o,$(wildcard cms/docs/*.json))
 blogdocs := $(patsubst %.json,%.o,$(wildcard blog/docs/*.json))
 resource := http://slouchAdmin:shablagoo@127.0.0.1:5984
@@ -552,7 +553,7 @@ uninstall-am:
 .PRECIOUS: Makefile
 
 
-createdb: createcmsdb createblogdb
+createdb: createcmsdb createblogdb createactiondb
 	touch $@
 
 createcmsdb:
@@ -560,6 +561,9 @@ createcmsdb:
 
 createblogdb:
 	$(CURL) -X PUT $(resource)/blog
+
+createactiondb:
+	$(CURL) -X PUT $(resource)/action
 
 define loadddoc =
 	cp ddoc.json $(1)designdoc
@@ -591,13 +595,16 @@ cmsdesigndoc: createdb $(cmsviews)
 blogdesigndoc: createdb $(blogviews)
 	$(call loadddoc,blog)
 
+actiondesigndoc: createdb $(actionviews)
+	$(call loadddoc,action)
+
 cms/docs/%.o: cms/docs/%.json cmsdesigndoc
 	$(call loaddoc,cms)
 
 blog/docs/%.o: blog/docs/%.json blogdesigndoc
 	$(call loaddoc,blog)
 
-cmsbuild: $(cmsdocs) $(blogdocs)
+cmsbuild: $(cmsdocs) $(blogdocs) actiondesigndoc
 	touch $@
 
 clean-local:
@@ -607,7 +614,7 @@ clean-local:
 @DEBUG_TRUE@all-local: cmsbuild
 @DEBUG_FALSE@all-local: cmsbuild
 
-.PHONY: createcmsdb createblogdb
+.PHONY: createcmsdb createblogdb createactiondb
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

@@ -4,12 +4,13 @@
 
 cmsviews = cms/views/*.js
 blogviews = blog/views/*.js
+actionviews = action/views/*.js
 cmsdocs := $(patsubst %.json,%.o,$(wildcard cms/docs/*.json))
 blogdocs := $(patsubst %.json,%.o,$(wildcard blog/docs/*.json))
 resource := http://slouchAdmin:shablagoo@127.0.0.1:5984
 jsonHdr := Content-Type: application/json
 
-createdb: createcmsdb createblogdb
+createdb: createcmsdb createblogdb createactiondb
 	touch $@
 
 createcmsdb:
@@ -17,6 +18,9 @@ createcmsdb:
 
 createblogdb:
 	$(CURL) -X PUT $(resource)/blog
+
+createactiondb:
+	$(CURL) -X PUT $(resource)/action
 
 define loadddoc =
 	cp ddoc.json $(1)designdoc
@@ -48,13 +52,16 @@ cmsdesigndoc: createdb $(cmsviews)
 blogdesigndoc: createdb $(blogviews)
 	$(call loadddoc,blog)
 
+actiondesigndoc: createdb $(actionviews)
+	$(call loadddoc,action)
+
 cms/docs/%.o: cms/docs/%.json cmsdesigndoc
 	$(call loaddoc,cms)
 
 blog/docs/%.o: blog/docs/%.json blogdesigndoc
 	$(call loaddoc,blog)
 
-cmsbuild: $(cmsdocs) $(blogdocs)
+cmsbuild: $(cmsdocs) $(blogdocs) actiondesigndoc
 	touch $@
 
 clean-local:
@@ -72,4 +79,4 @@ CONF_ENV = prod
 all-local: cmsbuild
 endif
 
-.PHONY: createcmsdb createblogdb
+.PHONY: createcmsdb createblogdb createactiondb
