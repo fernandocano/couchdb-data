@@ -67,6 +67,7 @@ cmsbuild: $(cmsdocs) $(blogdocs) actiondesigndoc
 clean-local:
 	$(CURL) -X DELETE $(resource)/cms
 	$(CURL) -X DELETE $(resource)/blog
+	$(CURL) -X DELETE $(resource)/action
 	rm -f *designdoc createdb cmsbuild cms/docs/*.o blog/docs/*.o
 
 
