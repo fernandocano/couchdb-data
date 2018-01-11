@@ -1,0 +1,29 @@
+{
+	"_id":"6377ccf45c08495386bf3fb2093624ae",
+	"siteId":"podblog",
+	"pageId":"adhoc",
+	"timestamp":"2017-12-20T18:00:00.001Z",
+	"title":"Musings...#1",
+	"subtitle":"The Sacred Pause",
+	"keywords":"adhoc,inspiration",
+	"hasHtml": true,
+	"body": [
+		"Enough.  These few words are enough.",
+		"If not these words, this breath.<br/>If not this breath, this sitting here.",
+		"This opening to the life<br/>we have refused<br/>again and again<br/>until now.",
+		"Until now.",
+		"--David Whyte"
+	],
+	"image": {
+		"sources": [
+			{
+				"dataSrcset":"/images/trees_110w.jpg",
+				"media": "--small"
+			},
+			{
+				"dataSrcset":"/images/trees_320w.jpg"
+			}
+		],
+		"dataSrc": "holder.js/100px100p?theme=custom&text=&#xF030;&auto"
+	}
+}

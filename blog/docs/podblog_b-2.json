@@ -1,0 +1,25 @@
+{
+	"_id":"49e1079970f14828ad42c2475097eeeb",
+	"siteId":"podblog",
+	"pageId":"adhoc",
+	"timestamp":"2018-01-01T18:00:00.001Z",
+	"title":"Musings...#2",
+	"subtitle":"Today",
+	"keywords":"adhoc,inspiration",
+	"hasHtml": false,
+	"body": [
+		"May today there be peace within. May you trust that you are exactly where you are meant to be. May you not forget the infinite possibilities that are born of faith in yourself and others. May you use the gifts that you have received, and pass on the love that has been given to you.  May you be content with yourself just the way you are. Let this knowledge settle into your bones, and allow your soul the freedom to sing, dance, praise and love. It is there for each and every one of us. Today."
+	],
+	"image": {
+		"sources": [
+			{
+				"dataSrcset":"/images/bluesky_110w.jpg",
+				"media": "--small"
+			},
+			{
+				"dataSrcset":"/images/bluesky_320w.jpg"
+			}
+		],
+		"dataSrc": "holder.js/100px100p?theme=custom&text=&#xF030;&auto"
+	}
+}

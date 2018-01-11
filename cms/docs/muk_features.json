@@ -10,16 +10,17 @@
 				"title": "This Portal",
 				"content": "An ampersand single page app with pug and stylus.",
 				"badges": [
-					{"label": "success", "glyphicon": "ok", "hint": "functional"},
-					{"label": "info", "glyphicon": "wrench", "hint": "under construction"}
+					{"label": "success", "icon": "check", "hint": "functional"},
+					{"label": "info", "icon": "wrench", "hint": "under construction"}
 				]
 			},
 			{
 				"id": 2,
 				"title": "Scheduler",
-				"content": "Some kind of scheduling thing.",
+				"content": "Simple scheduling via shared google calendar and event api.",
 				"badges": [
-					{"label": "danger", "glyphicon": "cloud", "hint": "vapor-ware"}
+					{"label": "success", "icon": "check", "hint": "functional"},
+					{"label": "info", "icon": "wrench", "hint": "under construction"}
 				]
 			},
 			{
@@ -27,8 +28,8 @@
 				"title": "Checkout",
 				"content": "A checkout flow with stripe and paypal integration.",
 				"badges": [
-					{"label": "success", "glyphicon": "ok", "hint": "functional"},
-					{"label": "info", "glyphicon": "wrench", "hint": "under construction"}
+					{"label": "success", "icon": "check", "hint": "functional"},
+					{"label": "info", "icon": "wrench", "hint": "under construction"}
 				]
 			}
 		]
